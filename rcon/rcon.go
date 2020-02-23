@@ -4,6 +4,8 @@ package rcon
 
 import (
 	"fmt"
+	"net"
+	"bytes"
 )
 
 const SERVERDATA_AUTH           int32 := 3
@@ -16,16 +18,27 @@ func Test() {
 }
 
 /* Use when you have your own connection code */
-func InitRcon() {
-	
+func InitRcon(conn Conn, password string) {
+	RconSend(conn, SERSERVERDATA_AUTH, password)
 }
 
 /* For when you don't want to write connection code */
-func RconInitConnection() {
+func RconInitConnection(address, port, password string) Conn{
 	
+	conn, err := net.Dial("tcp4", (address + ":" + port))
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(2)
+	}
+
+	InitRcon(conn, password)
+	
+	return conn
 }
 
-func RconSend() {
+func RconSend(conn Conn, reqType int32, body string) {
+	var p rconPacket
+	p = constructPacket(reqType, body)
 	
 }
 

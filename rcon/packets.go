@@ -4,6 +4,7 @@ package rcon
 
 import (
 	"math/rand"
+	"bytes"
 )
 
 type rconPacket struct {
@@ -23,8 +24,9 @@ func constructPacket(reqType int32, body string) *rconPacket{
 	}
 }
 
-func marshalPacket() {
-	
+/* Rcon requires all data be in Little Endian */
+func marshalPacket(p rconPacket) []byte {
+	// TODO: This.
 }
 
 func unmarshalPacket() {
