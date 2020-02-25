@@ -3,12 +3,11 @@
 package main
 
 import (
-	"fmt"
 	"../rcon"
 )
 
 func main() {
-	fmt.Println("In main()")
-	rcon.Test()
+	conn := rcon.RconInitConnection("10.0.0.128", "27015", "test")
+	rcon.RconSend(conn, rcon.SERVERDATA_EXECCOMMAND, "say Hello")
 }
  
