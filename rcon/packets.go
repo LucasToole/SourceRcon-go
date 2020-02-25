@@ -25,10 +25,11 @@ func constructPacket(reqType int32, body string) *rconPacket{
 }
 
 /* Rcon requires all data be in Little Endian */
-func marshalPacket(p rconPacket) []byte {
+func encodePacket(p rconPacket) []byte {
 	// TODO: This.
+	
 }
 
-func unmarshalPacket() {
+func encodePacket() {
 	
 }
