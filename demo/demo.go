@@ -3,7 +3,7 @@
 package main
 
 import (
-	"../rcon"
+	"github.com/LucasToole/SourceRcon-go/rcon"
 )
 
 func main() {

@@ -19,7 +19,7 @@ func Test() {
 
 /* Use when you have your own connection code */
 func InitRcon(conn net.Conn, password string) {
-	RconSend(conn, SERVERDATA_AUTH, password)
+	RconSend(conn, AUTH, password)
 }
 
 /* For when you don't want to write connection code */
