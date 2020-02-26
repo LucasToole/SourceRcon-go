@@ -13,10 +13,6 @@ const AUTH_RESPONSE  int32 = 2
 const EXECCOMMAND    int32 = 2
 const RESPONSE_VALUE int32 = 0
 
-func Test() {
-	fmt.Println("In Test()")
-}
-
 /* Use when you have your own connection code */
 func InitRcon(conn net.Conn, password string) {
 	RconSend(conn, AUTH, password)
@@ -36,7 +32,7 @@ func RconInitConnection(address, port, password string) (net.Conn) {
 	return conn
 }
 
-func RconSend(conn net.Conn, reqType int32, body string) {
+func RconSend(conn net.Conn, reqType int32, body string) (int32){
 	packet := constructPacket(reqType, body)
 
 	binpacket, err := encodePacket(packet); 
@@ -46,12 +42,24 @@ func RconSend(conn net.Conn, reqType int32, body string) {
 	}
 
 	conn.Write(binpacket)
-	
+
+	return packet.id
 	
 }
 
-func RconRecieve() {
+func RconRecieve(conn net.Conn, id int32) (int32, string){
+	buf := make([]byte, 0, 4096)
 	
+	num, err := conn.Read(buf)
+	if err != nil {
+		fmt.Println(err)
+	}
+	if num > 4096 { // TODO: Multi-Packet Response
+		fmt.Println("Response too large for single packet.")
+		fmt.Println("Current version does not support multi-packet responses.")
+	}
+	packet := decodePacket(buf)
+	return packet.id, packet.body
 }
 
 
