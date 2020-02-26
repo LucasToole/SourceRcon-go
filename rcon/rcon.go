@@ -8,10 +8,10 @@ import (
 	"os"
 )
 
-const SERVERDATA_AUTH           int32 = 3
-const SERVERDATA_AUTH_RESPONSE  int32 = 2
-const SERVERDATA_EXECCOMMAND    int32 = 2
-const SERVERDATA_RESPONSE_VALUE int32 = 0
+const AUTH           int32 = 3
+const AUTH_RESPONSE  int32 = 2
+const EXECCOMMAND    int32 = 2
+const RESPONSE_VALUE int32 = 0
 
 func Test() {
 	fmt.Println("In Test()")
